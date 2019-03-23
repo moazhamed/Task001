@@ -63,13 +63,11 @@ public class CategoriesFragment extends BaseFragment {
     }
 
     public void getCategories() {
-        //showProgressBar();
         ApiManager.getAPIs()
                 .getCategories(categoryId, countryId)
                 .enqueue(new Callback<List<CategoryItem>>() {
                     @Override
                     public void onResponse(Call<List<CategoryItem>> call, final Response<List<CategoryItem>> response) {
-                        //                hideProgressBar();
                         adapter = new CategoriesAdapter(response.body());
                         adapter.setOnImageClickListener(new CategoriesAdapter.OnItemClickListener() {
                             @Override
@@ -77,7 +75,7 @@ public class CategoriesFragment extends BaseFragment {
                                 selectedCategoryId = item.getId();
                                 titleEn = item.getTitleEN();
                                 titleAr = item.getTitleAR();
-                                ((MainActivity) getActivity()).pushSubCategoriesFragment();
+                                ((MainActivity) getActivity()).pushSubCategoriesFragment(item.getTitleEN());
                                 ((MainActivity) getActivity()).setSelectedCategoryId(selectedCategoryId);
                                 ((MainActivity) getActivity()).setSelectedCategoryNameEn(titleEn);
                                 ((MainActivity) getActivity()).setSelectedCategoryNameAr(titleAr);
@@ -89,7 +87,6 @@ public class CategoriesFragment extends BaseFragment {
 
                     @Override
                     public void onFailure(Call<List<CategoryItem>> call, Throwable t) {
-                        //       hideProgressBar();
 
                     }
                 });

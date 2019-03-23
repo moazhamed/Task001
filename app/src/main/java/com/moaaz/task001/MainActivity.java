@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.moaaz.task001.Base.BaseActivity;
 import com.moaaz.task001.Base.BaseFragment;
@@ -59,7 +60,22 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void pushSubCategoriesFragment() {
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(getSupportFragmentManager().getBackStackEntryCount()==0){
+            findViewById(R.id.logo)
+                    .setVisibility(View.VISIBLE);
+            findViewById(R.id.title).setVisibility(View.GONE);
+
+        }
+    }
+
+    public void pushSubCategoriesFragment(String title) {
+        findViewById(R.id.logo)
+                .setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.title)).setText(title);
+        findViewById(R.id.title).setVisibility(View.VISIBLE);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, subCategoriesFragment)

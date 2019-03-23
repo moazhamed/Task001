@@ -34,7 +34,7 @@ public class SubCategoriesFragment extends BaseFragment {
     RecyclerView.LayoutManager manager;
     public int selectedCategoryId;
     public static final int countryId = 1;
-    public String englishTitle , arabicTitle;
+    public String englishTitle, arabicTitle;
 
     public SubCategoriesFragment() {
         // Required empty public constructor
@@ -65,7 +65,6 @@ public class SubCategoriesFragment extends BaseFragment {
     }
 
     public void getSubCategories() {
-
         ApiManager
                 .getAPIs()
                 .getCategories(selectedCategoryId, countryId)
@@ -80,7 +79,6 @@ public class SubCategoriesFragment extends BaseFragment {
 
                     @Override
                     public void onFailure(Call<List<CategoryItem>> call, Throwable t) {
-
                     }
                 });
 
